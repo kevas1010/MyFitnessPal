@@ -3,6 +3,12 @@ import { AntDesign } from '@expo/vector-icons';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'expo-router';
 
+import { FoodItem } from '../types';
+
+type Props = {
+  item: FoodItem;
+};
+
 const mutation = gql`
   mutation MyMutation(
     $food_id: String!
@@ -26,7 +32,7 @@ const mutation = gql`
   }
 `;
 
-const FoodListItem = ({ item }) => {
+const FoodListItem = ({ item }: Props) => {
   const [logFood] = useMutation(mutation, {
     refetchQueries: ['foodLogsForDate'],
   });
